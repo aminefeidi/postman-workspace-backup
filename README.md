@@ -43,4 +43,4 @@ pm-download-combine --api-key YOUR_API_KEY --ws-id WORKSPACE_ID --timeout 300 --
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
