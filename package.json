@@ -1,10 +1,10 @@
 {
-  "name": "pm-download-combine",
+  "name": "postman-combine",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
   "bin": {
-    "pm-download-combine": "./dist/index.js"
+    "postman-combine": "./dist/index.js"
   },
   "scripts": {
     "start": "tsc && node dist/index.js",
@@ -13,8 +13,8 @@
   "keywords": ["postman", "download", "combine", "collection", "cli"],
   "author": "aminefeidi",
   "license": "MIT",
-  "repository": "https://github.com/aminefeidi/pm-download-combine",
-  "homepage": "https://github.com/aminefeidi/pm-download-combine#readme",
+  "repository": "https://github.com/aminefeidi/postman-combine",
+  "homepage": "https://github.com/aminefeidi/postman-combine#readme",
   "dependencies": {
     "args": "^5.0.3",
     "async": "^2.6.1",
