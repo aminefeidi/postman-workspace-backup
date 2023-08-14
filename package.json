@@ -1,10 +1,10 @@
 {
-  "name": "postman-workspace-combine",
+  "name": "postman-workspace-backup",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
   "bin": {
-    "postman-workspace-combine": "./dist/index.js"
+    "postman-workspace-backup": "./dist/index.js"
   },
   "scripts": {
     "start": "tsc && node dist/index.js",
@@ -13,8 +13,8 @@
   "keywords": ["postman", "download", "combine", "collection", "cli"],
   "author": "aminefeidi",
   "license": "MIT",
-  "repository": "https://github.com/aminefeidi/postman-workspace-combine",
-  "homepage": "https://github.com/aminefeidi/postman-workspace-combine#readme",
+  "repository": "https://github.com/aminefeidi/postman-workspace-backup",
+  "homepage": "https://github.com/aminefeidi/postman-workspace-backup#readme",
   "dependencies": {
     "args": "^5.0.3",
     "async": "^2.6.1",

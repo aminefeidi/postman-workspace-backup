@@ -1,4 +1,4 @@
-# postman-workspace-combine
+# postman-workspace-backup
 
 This project is designed to download Postman collections from a workspace using the Postman API and save them as JSON files. It provides a convenient way to manage and organize collections for further use. The collections can be merged into a single file for easier import into Postman or for use with CI/CD pipelines using newman.
 
@@ -11,7 +11,7 @@ To use this project, you need to have Node.js installed on your system. You can 
 Open your terminal and run the following command:
 
 ```
-npm i -g postman-workspace-combine
+npm i -g postman-workspace-backup
 ```
 
 ### Usage
@@ -19,7 +19,7 @@ npm i -g postman-workspace-combine
 You can run the project using the following command:
 
 ```
-postman-workspace-combine --api-key YOUR_API_KEY --ws-id WORKSPACE_ID -c
+postman-workspace-backup --api-key YOUR_API_KEY --ws-id WORKSPACE_ID -c
 ```
 
 Available options:
@@ -38,7 +38,7 @@ Available options:
 For example:
 
 ```
-postman-workspace-combine --api-key YOUR_API_KEY --ws-id WORKSPACE_ID --timeout 300 --use-date --output-folder collections --merged-col-name merged_collection.json --codify-names
+postman-workspace-backup --api-key YOUR_API_KEY --ws-id WORKSPACE_ID --timeout 300 --use-date --output-folder collections --merged-col-name merged_collection.json --codify-names
 ```
 
 ## License
