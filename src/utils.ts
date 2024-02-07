@@ -1,11 +1,7 @@
 import fs from "fs";
 import path from "path";
 import cliProgress from "cli-progress";
-import {
-    Collection,
-    Item,
-    ItemGroup
-} from "postman-collection";
+import { Collection, Item, ItemGroup } from "postman-collection";
 
 // Function to read all collection files in a directory
 export function readCollectionsFromFolder(folderPath: string) {
@@ -64,18 +60,15 @@ export function mergeCollections(collections: Collection[]) {
 }
 
 export function combineCollections(
+    collections: Collection[],
     collectionFolder: string,
     outputCollectionFilename: string
 ) {
-    // Read collections from folder
-    console.log(`Reading collections from folder: ${collectionFolder}`);
-    const collections = readCollectionsFromFolder(collectionFolder).sort(
-        (a, b) => {
-            const aNumber = parseInt(a.name.slice(1));
-            const bNumber = parseInt(b.name.slice(1));
-            return aNumber - bNumber;
-        }
-    );
+    collections = collections.sort((a, b) => {
+        const aNumber = parseInt(a.name.slice(1));
+        const bNumber = parseInt(b.name.slice(1));
+        return aNumber - bNumber;
+    });
 
     // Merge collections
     console.log("Merging collections");

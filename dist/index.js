@@ -10,6 +10,7 @@ const dateformat_1 = __importDefault(require("dateformat"));
 const cli_progress_1 = __importDefault(require("cli-progress"));
 const args_1 = __importDefault(require("args"));
 const utils_1 = require("./utils");
+const postman_collection_1 = require("postman-collection");
 const Client = require("node-rest-client").Client;
 args_1.default.option("api-key", "The postman API key")
     .option("ws-id", "Postman workspace id")
@@ -45,6 +46,7 @@ const bar = new cli_progress_1.default.SingleBar({}, cli_progress_1.default.Pres
 const colUrl = APIURL + "collections/";
 const wsColUrl = APIURL + "collections?workspace=" + WSID;
 let i = 0;
+let collections = [];
 getData(wsColUrl, APIKEY, (collIdsJson) => {
     bar.start(collIdsJson.collections.length, 0);
     async_1.default.eachSeries(collIdsJson.collections, function getCollection(el, callback) {
@@ -59,7 +61,9 @@ getData(wsColUrl, APIKEY, (collIdsJson) => {
                 //console.log(name);
                 bar.increment();
                 let filename = name + ".json";
-                saveJson(EXPORT_COL_DIR, filename, colJson);
+                collections.push(new postman_collection_1.Collection(collection));
+                if (!MERGE_COL)
+                    saveJson(EXPORT_COL_DIR, filename, colJson);
             });
             callback();
         }, TIMEOUT);
@@ -76,7 +80,7 @@ getData(wsColUrl, APIKEY, (collIdsJson) => {
                     bar.stop();
                     console.log("\nAll collections download done\n");
                     if (MERGE_COL)
-                        (0, utils_1.combineCollections)(EXPORT_COL_DIR, MASTER_COL_NAME);
+                        (0, utils_1.combineCollections)(collections, EXPORT_COL_DIR, MASTER_COL_NAME);
                 }, DOWNLOAD_TIMEOUT);
             }
         }

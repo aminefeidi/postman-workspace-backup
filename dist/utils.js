@@ -51,10 +51,8 @@ function mergeCollections(collections) {
     return mergedCollection.toJSON();
 }
 exports.mergeCollections = mergeCollections;
-function combineCollections(collectionFolder, outputCollectionFilename) {
-    // Read collections from folder
-    console.log(`Reading collections from folder: ${collectionFolder}`);
-    const collections = readCollectionsFromFolder(collectionFolder).sort((a, b) => {
+function combineCollections(collections, collectionFolder, outputCollectionFilename) {
+    collections = collections.sort((a, b) => {
         const aNumber = parseInt(a.name.slice(1));
         const bNumber = parseInt(b.name.slice(1));
         return aNumber - bNumber;

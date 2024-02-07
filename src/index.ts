@@ -6,6 +6,7 @@ import dateformat from "dateformat";
 import cliProgress from "cli-progress";
 import args from "args";
 import { combineCollections } from "./utils";
+import { Collection } from "postman-collection";
 
 const Client = require("node-rest-client").Client;
 
@@ -58,6 +59,7 @@ const bar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
 const colUrl = APIURL + "collections/";
 const wsColUrl = APIURL + "collections?workspace=" + WSID;
 let i = 0;
+let collections: Collection[] = [];
 
 getData(wsColUrl, APIKEY, (collIdsJson: any) => {
     bar.start(collIdsJson.collections.length, 0);
@@ -77,8 +79,8 @@ getData(wsColUrl, APIKEY, (collIdsJson: any) => {
                     //console.log(name);
                     bar.increment();
                     let filename = name + ".json";
-
-                    saveJson(EXPORT_COL_DIR, filename, colJson);
+                    collections.push(new Collection(collection));
+                    if (!MERGE_COL) saveJson(EXPORT_COL_DIR, filename, colJson);
                 });
                 callback();
             }, TIMEOUT);
@@ -94,7 +96,11 @@ getData(wsColUrl, APIKEY, (collIdsJson: any) => {
                         bar.stop();
                         console.log("\nAll collections download done\n");
                         if (MERGE_COL)
-                            combineCollections(EXPORT_COL_DIR, MASTER_COL_NAME);
+                            combineCollections(
+                                collections,
+                                EXPORT_COL_DIR,
+                                MASTER_COL_NAME
+                            );
                     }, DOWNLOAD_TIMEOUT);
                 }
             }
